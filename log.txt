@@ -1,0 +1,10 @@
+1. déballage raspberry pi 4b
+2. téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B)
+3. suivi des instructions d'installation sur le site www.okdo.com/getstarted
+3.1 collage des heatsinks sur le raspberry
+3.2 insertion du raspberry dans son boitier
+4. flash de la carte sd avec raspberry pi imager (commande 'dd' pour le faire manuellement sur un sys. unix)
+5. insertion de la carte micro sd dans le raspberry
+6. branchement du cable hdmi dans le port 'hdmi 0' du raspberry et démarrage de celui-ci
+7. boot xbian 
+
