@@ -1,3 +1,5 @@
+Cours 1 (14.09.2020)
+
 1. déballage raspberry pi 4b
 2. téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B)
 3. suivi des instructions d'installation sur le site www.okdo.com/getstarted
@@ -11,3 +13,14 @@
 8.1 connexion du raspberry à internet via wifi (https://docs.dataplicity.com/docs/get-pi-connected-to-the-internet)
 8.2 sudo apt-get update pour mettre à jour les paquets
 8.3 changement du layout du clavier (https://sudoxanthippe.wordpress.com/2012/07/27/changing-keyboard-layout-on-raspbian-11-2/)
+
+installation du service SSH sur le raspberry
+9.1 commande 'sudo apt-get install ssh'
+9.2 commande 'sudo service ssh restart'
+
+Connexion:
+10. dans le terminal distant, taper la commande 'ssh xbian@addrIpDuRaspberry' ("xbian" etant le nom de l'utilisateur)
+
+
+
+Cours 2 (21.09.2020)
