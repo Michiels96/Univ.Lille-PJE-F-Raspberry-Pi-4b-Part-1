@@ -7,4 +7,7 @@
 5. insertion de la carte micro sd dans le raspberry
 6. branchement du cable hdmi dans le port 'hdmi 0' du raspberry et démarrage de celui-ci
 7. boot xbian 
-
+8. configuration de clavier en azerty
+8.1 connexion du raspberry à internet via wifi (https://docs.dataplicity.com/docs/get-pi-connected-to-the-internet)
+8.2 sudo apt-get update pour mettre à jour les paquets
+8.3 changement du layout du clavier (https://sudoxanthippe.wordpress.com/2012/07/27/changing-keyboard-layout-on-raspbian-11-2/)
