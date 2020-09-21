@@ -31,6 +31,9 @@ depuis la mach. linux taper la commande nmap -sP 192.168.5.0/24
 normalement l'addr 192.168.5.71 sera affichée et c'est celle du raspberry
 se connecter avec sh via ssh xbian@192.168.5.71
 
+enlever le bouton exit du GUI kodi
+- aller dans /usr/local/share/kodi/addons/skin.estuary/xml et éditer le fichier DialogButtonMenu.xml (faire une sauvegarde du fichier avant modif.)
+- remplacer la ligne en dessous de <onclick>Quit()</onclick> par <visible>no</visible>
 
 
 Cours 2 (21.09.2020)
