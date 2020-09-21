@@ -24,3 +24,17 @@ Connexion:
 
 
 Cours 2 (21.09.2020)
+- exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
+- aussi un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+
+étape 1:
+1. création du script
+1.1 création du dossier 'scripts' dans ~/ (commande #mkdir scripts)
+1.2 création du fichier 'cron.sh' avec le contenu suivant:
+#!/bin/bash
+echo 'exécution de la commande #ls -l'
+ls -l
+1.3 autorisation de l'exécuter pour tt le monde, commande #chmod +x cron.sh
+1.4 test pour voir si le script fonctionne, commande #./cron.sh
+
+2. mise en place du démon 'cron'
