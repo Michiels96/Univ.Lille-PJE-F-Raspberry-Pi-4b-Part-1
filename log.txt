@@ -21,6 +21,16 @@ installation du service SSH sur le raspberry
 Connexion:
 10. dans le terminal distant, taper la commande 'ssh xbian@addrIpDuRaspberry' ("xbian" etant le nom de l'utilisateur)
 
+connexion via cable ethernet (linux - sans root)
+- impossible de hardcoder une addr static dans le linux sans root alors on utilise la dernière addresse à laquelle l'ordi s'est connecté
+- configuration et mise en place d'une addr static dans kodi (menu - outils xbian - system) changer le type en static
+et hard coder IP Adress puis sauver les changements
+ex: raspberrypi: 192.168.5.71
+    mach. linux: 192.168.5.70
+depuis la mach. linux taper la commande nmap -sP 192.168.5.0/24
+normalement l'addr 192.168.5.71 sera affichée et c'est celle du raspberry
+se connecter avec sh via ssh xbian@192.168.5.71
+
 
 
 Cours 2 (21.09.2020)
