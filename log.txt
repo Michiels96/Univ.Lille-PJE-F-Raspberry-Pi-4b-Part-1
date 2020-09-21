@@ -51,3 +51,20 @@ ls -l
 1.4 test pour voir si le script fonctionne, commande #./cron.sh
 
 2. mise en place du démon 'cron'
+2.1 ajout du script à l'exécution de cron
+#crontab -e 
+* * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
+(s'exécute ttes les minutes)
+
+2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
+ligne a ajouter apres un #crontab -e 
+- installer git 
+#apt-get update 
+et 
+#apt-get install git
+- faire attendre une durée aléatoire entre 10 et 20 secondes => #sleep $((10 + RANDOM % 11))
+le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
+
+
+=> 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((10 + RANDOM % 11)) && 
+
