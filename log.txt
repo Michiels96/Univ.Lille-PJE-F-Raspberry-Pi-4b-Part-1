@@ -38,33 +38,44 @@ enlever le bouton exit du GUI kodi
 
 Cours 2 (21.09.2020)
 - exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
-- aussi un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+- connexion du disque dur au raspberry
+- installer les commandes tar, ffmpeg, youtube-dl, Git, wGet (tar et wget, déjà installés)
+- exécuter un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+
+
 
 étape 1:
-1. création du script
-1.1 création du dossier 'scripts' dans ~/ (commande #mkdir scripts)
-1.2 création du fichier 'cron.sh' avec le contenu suivant:
+1.1 création du script
+1.1.1 création du dossier 'scripts' dans ~/ (commande #mkdir scripts)
+1.1.2 création du fichier 'cron.sh' avec le contenu suivant:
 #!/bin/bash
 echo 'exécution de la commande #ls -l'
 ls -l
-1.3 autorisation de l'exécuter pour tt le monde, commande #chmod +x cron.sh
-1.4 test pour voir si le script fonctionne, commande #./cron.sh
+1.1.3 autorisation de l'exécuter pour tt le monde, commande #chmod +x cron.sh
+1.1.4 test pour voir si le script fonctionne, commande #./cron.sh
 
-2. mise en place du démon 'cron'
-2.1 ajout du script à l'exécution de cron
-#crontab -e 
+1.2 mise en place du démon 'cron'
+1.2.1 ajout du script à l'exécution de cron => #crontab -e 
+ajouter cette ligne en fin
 * * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
 (s'exécute ttes les minutes)
 
-2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
-ligne a ajouter apres un #crontab -e 
+1.2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
+
 - installer git 
 #apt-get update 
 et 
 #apt-get install git
-- faire attendre une durée aléatoire entre 10 et 20 secondes => #sleep $((10 + RANDOM % 11))
+- faire attendre une durée aléatoire entre 0 et 3600 secondes => #sleep $((RANDOM % 3600))
 le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
 
+ligne a ajouter apres avoir lancé la commande #crontab -e 
+=> 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((RANDOM % 3600)) && sh /root/scripts/git_scripts/pje-f/runit/runit.sh
 
-=> 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((10 + RANDOM % 11)) && 
+connexion du disque dur au raspberry
+raspberry le monte automatiquement
+commande pour lister les disques => #lsblk
+commande pour démonter le disque 'sda1' => #umount -l /dev/sda1
+
+Cours 3 (28.09.2020)
 
