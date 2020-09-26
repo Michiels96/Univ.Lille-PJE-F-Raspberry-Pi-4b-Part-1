@@ -72,7 +72,7 @@ le (&& permet d'exécuter la commande suivante uniquement si la précédente est
 ligne a ajouter apres avoir lancé la commande #crontab -e 
 => 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((RANDOM % 3600)) && sh /root/scripts/git_scripts/pje-f/runit/runit.sh
 
-connexion du disque dur au raspberry
+connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
 raspberry le monte automatiquement
 commande pour lister les disques => #lsblk
 commande pour démonter le disque 'sda1' => #umount -l /dev/sda1
