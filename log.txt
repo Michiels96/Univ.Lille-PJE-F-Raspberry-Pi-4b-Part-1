@@ -75,7 +75,9 @@ ligne a ajouter apres avoir lancé la commande #crontab -e
 connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
 raspberry le monte automatiquement
 commande pour lister les disques => #lsblk
-commande pour démonter le disque 'sda1' => #umount -l /dev/sda1
+/media/sda est le disque dur
+/media/sda1 est la partition donc il faut créer les dossiers dans /media/sda1 qui nous mène dans ce cas ci au dossier '/media/usb0'
+commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande #lsblk)
 
 Cours 3 (28.09.2020)
 
