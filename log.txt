@@ -69,24 +69,39 @@ et
 - faire attendre une durée aléatoire entre 0 et 3600 secondes => #sleep $((RANDOM % 3600))
 le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
 
-pour exécuter un pull a partir d'un répertoire différent:
+Pour exécuter un pull a partir d'un répertoire différent:
 #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull
 
-le problème c'est qu'il va nous demander à chaque fois notre username et passwd donc après avoir lancé la commande #git config --global credential.helper store
+Le problème c'est qu'il va nous demander à chaque fois notre username et passwd donc après avoir lancé la commande #git config --global credential.helper store
 il faudra de nouveau exéctuer #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull https://gitlab.univ-lille.fr/pierre.michiels.etu/pje-f-raspberry-pi-4b.git
 là il nous demandera pour la dernière fois notre username et passwd (https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension)
 
-repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
+connexion au repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
+
+le premier script 'runit.sh' ressemble à ceci:
+#!/bin/bash
+echo "$(date) - alive $rpi_name" >> /log/workload.log
+
+$rpi_name est une variable qui représente le nom hostname du raspberry, on l'ajoute en tant que variable dans #crontab -e
 
 ligne a ajouter apres avoir lancé la commande #crontab -e 
-=> 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((RANDOM % 3600)) && sh /root/scripts/git_scripts/pje-f/runit/runit.sh
+=> * 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && sh $CORRECT_GIT_PATH/runit/runit.sh && cat /log/workload.log >> $CORRECT_GIT_PATH/logs/workload.log && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
 
-connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
+et avec le paragraphe de '#' on ajoute les variables suivantes:
+rpi_name=michiels_raspberry_4b
+CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f
+
+
+2.0 connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
 raspberry le monte automatiquement
 commande pour lister les disques => #lsblk
 /media/sda est le disque dur
 /media/sda1 est la partition donc il faut créer les dossiers dans /media/sda1 qui nous mène dans ce cas ci au dossier '/media/usb0'
 commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande #lsblk)
+
+
+3.0 exécuter un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+
 
 Cours 3 (28.09.2020)
 
