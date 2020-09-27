@@ -69,6 +69,9 @@ et
 - faire attendre une durée aléatoire entre 0 et 3600 secondes => #sleep $((RANDOM % 3600))
 le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
 
+changer l'heure et la mettre à celle de bruxelles => #ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+(https://www.systutorials.com/linux-setting-date-time-and-timezone/)
+
 Pour exécuter un pull a partir d'un répertoire différent:
 #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull
 
