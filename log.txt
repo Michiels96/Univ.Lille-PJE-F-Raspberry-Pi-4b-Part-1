@@ -40,7 +40,7 @@ Cours 2 (21.09.2020)
 - exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
 - connexion du disque dur au raspberry
 - installer les commandes tar, ffmpeg, youtube-dl, Git, wGet (tar et wget, déjà installés)
-- exécuter un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+- exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
 
 
 
@@ -100,7 +100,11 @@ commande pour lister les disques => #lsblk
 commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande #lsblk)
 
 
-3.0 exécuter un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+3.0 exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
+- installation du paquet 'lm-sensors' => #apt-get install lm-sensors
+- pour retirer une string de l'ouput de la commande #sensors => #sensors | grep -oP '(?<=temp1:).*'
+(https://unix.stackexchange.com/questions/393948/how-to-search-and-extract-string-from-command-output)
+
 
 
 Cours 3 (28.09.2020)
