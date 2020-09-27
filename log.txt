@@ -76,7 +76,7 @@ le problème c'est qu'il va nous demander à chaque fois notre username et passw
 il faudra de nouveau exéctuer #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull https://gitlab.univ-lille.fr/pierre.michiels.etu/pje-f-raspberry-pi-4b.git
 là il nous demandera pour la dernière fois notre username et passwd (https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension)
 
-
+repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
 
 ligne a ajouter apres avoir lancé la commande #crontab -e 
 => 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((RANDOM % 3600)) && sh /root/scripts/git_scripts/pje-f/runit/runit.sh
