@@ -60,6 +60,8 @@ ajouter cette ligne en fin
 * * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
 (s'exécute ttes les minutes)
 
+pour débugger une commande dans cron qui ne donne aucun résultat, on peut la débugger en terminant la commande par: 'commande > ~/err.txt 2>&1'
+
 1.2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
 
 - installer git 
