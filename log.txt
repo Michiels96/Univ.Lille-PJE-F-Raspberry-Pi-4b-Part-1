@@ -111,4 +111,5 @@ commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avan
 
 
 Cours 3 (28.09.2020)
+- 
 
