@@ -121,6 +121,17 @@ il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et 
 il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
 
 - il faut aussi rediriger ce que le script du prof télécharge dans le disque dur /media/usb0/Films ou encore /media/usb0/Series etc.
+comment faire:
+exécuter les commandes=>
+
+#wget -q https://www.grimaud.ovh/pjef/Films.tar -O tmp.tar >> logs/workload.log
+#tar -xvf tmp.tar >> logs/workload.log
+#rm tmp.tar >> logs/workload.log
+#wget -q https://www.grimaud.ovh/pjef/Series.tar -O tmp.tar >> logs/workload.log
+#tar -xvf tmp.tar >> logs/workload.log
+#rm tmp.tar >> logs/workload.log
+
+puis déplacer les dossiers Films et Series dans le disque dur (/media/usb0/)
 
 dans chaque dossier on a un fichier mkv de taille 0 octect
 un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
