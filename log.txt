@@ -40,7 +40,7 @@ Cours 2 (21.09.2020)
 - exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
 - connexion du disque dur au raspberry
 - installer les commandes tar, ffmpeg, youtube-dl, Git, wGet (tar et wget, déjà installés)
-- exécuter un script qui sort a l'écran la temperature/frequence cpu du raspberry '~/scripts/diag.sh'
+- exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
 
 
 
@@ -60,6 +60,8 @@ ajouter cette ligne en fin
 * * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
 (s'exécute ttes les minutes)
 
+pour débugger une commande dans cron qui ne donne aucun résultat, on peut la débugger en terminant la commande par: 'commande > ~/err.txt 2>&1'
+
 1.2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
 
 - installer git 
@@ -69,24 +71,79 @@ et
 - faire attendre une durée aléatoire entre 0 et 3600 secondes => #sleep $((RANDOM % 3600))
 le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
 
-pour exécuter un pull a partir d'un répertoire différent:
+changer l'heure et la mettre à celle de bruxelles => #ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+(https://www.systutorials.com/linux-setting-date-time-and-timezone/)
+
+Pour exécuter un pull a partir d'un répertoire différent:
 #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull
 
-le problème c'est qu'il va nous demander à chaque fois notre username et passwd donc après avoir lancé la commande #git config --global credential.helper store
+Le problème c'est qu'il va nous demander à chaque fois notre username et passwd donc après avoir lancé la commande #git config --global credential.helper store
 il faudra de nouveau exéctuer #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull https://gitlab.univ-lille.fr/pierre.michiels.etu/pje-f-raspberry-pi-4b.git
 là il nous demandera pour la dernière fois notre username et passwd (https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension)
 
-repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
+connexion au repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
+
+le premier script 'runit.sh' ressemble à ceci:
+#!/bin/bash
+echo "$(date) - alive $rpi_name" >> /log/workload.log
+
+$rpi_name est une variable qui représente le nom hostname du raspberry, on l'ajoute en tant que variable dans #crontab -e
 
 ligne a ajouter apres avoir lancé la commande #crontab -e 
-=> 00 03 * * * cd /root/scripts/git_scripts && git pull && sleep $((RANDOM % 3600)) && sh /root/scripts/git_scripts/pje-f/runit/runit.sh
+=> * 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && sh $CORRECT_GIT_PATH/runit/runit.sh && cat /log/workload.log >> $CORRECT_GIT_PATH/logs/workload.log && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
 
-connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
+et avec le paragraphe de '#' on ajoute les variables suivantes:
+rpi_name=michiels_raspberry_4b
+CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f
+
+
+2.0 connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
 raspberry le monte automatiquement
 commande pour lister les disques => #lsblk
 /media/sda est le disque dur
 /media/sda1 est la partition donc il faut créer les dossiers dans /media/sda1 qui nous mène dans ce cas ci au dossier '/media/usb0'
 commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande #lsblk)
 
+
+3.0 exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
+- installation du paquet 'lm-sensors' => #apt-get install lm-sensors
+- pour retirer une string de l'ouput de la commande #sensors => #sensors | grep -oP '(?<=temp1:).*'
+(https://unix.stackexchange.com/questions/393948/how-to-search-and-extract-string-from-command-output)
+
+sinon, pour la frequence et le voltage
+freq=$(vcgencmd measure_clock arm)
+volt=$(vcgencmd measure_volts)
+
+
 Cours 3 (28.09.2020)
+- modifier l'interface, coté navigation (partie gauche)
+il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
+il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
+
+- il faut aussi rediriger ce que le script du prof télécharge dans le disque dur /media/usb0/Films ou encore /media/usb0/Series etc.
+comment faire:
+exécuter les commandes=>
+
+#wget -q https://www.grimaud.ovh/pjef/Films.tar -O tmp.tar >> logs/workload.log
+#tar -xvf tmp.tar >> logs/workload.log
+#rm tmp.tar >> logs/workload.log
+#wget -q https://www.grimaud.ovh/pjef/Series.tar -O tmp.tar >> logs/workload.log
+#tar -xvf tmp.tar >> logs/workload.log
+#rm tmp.tar >> logs/workload.log
+
+puis déplacer les dossiers Films et Series dans le disque dur (/media/usb0/)
+
+dans chaque dossier on a un fichier mkv de taille 0 octect
+un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
+*-poster.jpg qui est la jaquette
+*-fontart.jpg qui est l'image de fond
+*actors ???
+et en dernier, il faut télécharger de youtube le trailer du film avec la commande youtube-dl
+(indice: telecharger sur allocine)
+il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
+
+
+
+
+
 
