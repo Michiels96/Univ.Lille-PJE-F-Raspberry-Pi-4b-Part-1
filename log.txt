@@ -127,6 +127,19 @@ Cours 3 (28.09.2020)
 il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
 il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
 
+Pour faciliter le raffraichissement de la page, on utilise des raccourcis inscrits dans le fichier keymap.xml, (à créer et à mettre dans /home/xbian/.kodi/userdata/keymaps)
+
+
+
+Pour afficher plus que les catégories film, series, TV et météo, il faut aller dans le fichier Home.xml (/usr/local/share/kodi/addons/skin.estuary/xml/Home.xml) et mettre en commentaire les balises <item> et leur contenu à partir de la ligne avec "<control type="fixedlist" id="9000">"
+(voir point 6 - https://kodi.wiki/view/Estuary_Modification)
+
+- Il faut ajouter un addon pour la catégorie TV addon franceTV 
+Il faut donc le télécharger depuis kodi et son dossier dans le système unix se trouve à: /home/xbian/.kodi/addons/plugin.video.francetv
+(après l'exercice, j'ai appris qu'il m'est impossible de transferer l'addon france tv de la catégorie 'video' vers la catégorie 'TV')
+
+
+
 - il faut aussi rediriger ce que le script du prof télécharge dans le disque dur /media/usb0/Films ou encore /media/usb0/Series etc.
 comment faire:
 exécuter les commandes=>
@@ -140,7 +153,7 @@ exécuter les commandes=>
 
 puis déplacer les dossiers Films et Series dans le disque dur (/media/usb0/)
 
-dans chaque dossier on a un fichier mkv de taille 0 octect
+dans chaque dossier on a un fichier mkv de taille 0 octet
 un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
 *-poster.jpg qui est la jaquette
 *-fontart.jpg qui est l'image de fond
