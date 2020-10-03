@@ -85,12 +85,19 @@ connexion au repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
 
 le premier script 'runit.sh' ressemble à ceci:
 #!/bin/bash
+
 echo "$(date) - alive $rpi_name" >> /log/workload.log
 
 $rpi_name est une variable qui représente le nom hostname du raspberry, on l'ajoute en tant que variable dans #crontab -e
 
 ligne a ajouter apres avoir lancé la commande #crontab -e 
-=> * 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && sh $CORRECT_GIT_PATH/runit/runit.sh && cat /log/workload.log >> $CORRECT_GIT_PATH/logs/workload.log && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
+=> 
+GIT_PATH=/root/scripts/git_scripts/pje-f-raspberry-pi-4b
+CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f
+rpi_name=michiels_raspberry_4b
+1 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && bash $CORRECT_GIT_PATH/runit/runit.sh && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
+
+
 
 et avec le paragraphe de '#' on ajoute les variables suivantes:
 rpi_name=michiels_raspberry_4b
