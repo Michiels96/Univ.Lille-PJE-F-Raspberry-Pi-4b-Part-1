@@ -163,7 +163,8 @@ et en dernier, il faut télécharger de youtube le trailer du film avec la comma
 il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
 
 Cours 4 (05.10.2020)
-
+terminer le cours 3
+- afficher les catégories film, series, TV et météo (TV devient en fait la catégorie favoris et il aura le logo de la cat. TV et toutes les chaines du plugin franceTV)
 
 
 
