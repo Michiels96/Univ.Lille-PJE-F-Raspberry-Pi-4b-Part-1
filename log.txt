@@ -162,6 +162,8 @@ et en dernier, il faut télécharger de youtube le trailer du film avec la comma
 (indice: telecharger sur allocine)
 il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
 
+Cours 4 (05.10.2020)
+
 
 
 
