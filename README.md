@@ -12,8 +12,18 @@ Ce script doit afficher la date, la température, la fréquence du cpu et le 'Ko
 - Installer les paquets 'ffmpeg', 'tar', 'youtube-dl', 'Git' et 'wGet' sur le raspberry.
 ___
 # Cours 3 (28.09.2020)
-- Modifier l'interface graphique pour qu'après il y ai:
-* abc
+- Exécuter le script du professeur pour récuperer les Films et Séries puis les copier dans le disque dur dans leur répertoire respectifs
+- Trouver un moyen de télécharger les trailers (bande d'annonce) des films et séries
+## Modifier l'interface graphique pour qu'après il y ai:
+Niveau navigation: 
+- Ne plus que laisser les catégories 'Movies', 'TV Shows', 'Weather' et 'Favourites'
+- Installer l'add-on france.tv pour ensuite mettre chaque chaine dans la catégorie 'Favourites'
+- Installer un add-on fonctionn,el pour la catégorie 'Weather'
+- Renommer la catégorie 'Favourites' par 'TV' et remplacer le logo par celui de la catégorie supprimée 'live TV'
+Niveau Affichage: (Pour les catégories 'Movies' et 'TV Shows')
+- Lorsque le focus est sur une jaquette de la sous-catégorie 'Recently added movies'/'Recently added episodes', ajouter la description au dessus partie gauche et la bande d'annonce au-dessus partie droite.
+
+
 
 
 
