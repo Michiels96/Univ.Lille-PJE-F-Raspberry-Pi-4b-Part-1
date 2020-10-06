@@ -11,7 +11,7 @@ Ce script doit afficher la date, la température, la fréquence du cpu et le 'Ko
 - Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
 - Installer les paquets 'ffmpeg', 'tar', 'youtube-dl', 'Git' et 'wGet' sur le raspberry.
 ___
-Cours 3 (28.09.2020)
+# Cours 3 (28.09.2020)
 - Modifier l'interface graphique pour qu'après il y ai:
 -- abc
 
