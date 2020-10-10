@@ -162,6 +162,20 @@ et en dernier, il faut télécharger de youtube le trailer du film avec la comma
 (indice: telecharger sur allocine)
 il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
 
+Pour le téléchargement des trailers:
+installer le paquet curl pour récuperer un résultat json de l'api et jq pour pouvoir retirer des informations a partir du résultat json.
+- Créer un script bash:
+-- qui va récuperer un fichier json qui contient les données (venant de l'API youtube) pour chaque film du dossier Films
+-- récupère l'id de la 1ere video trouvée via la commande 'jq'
+-- télécharge la video (via la commande 'youtube-dl, a installer depuis le dépot officiel car la version via 'apt' est obselète) 
+avec le lien http qui contient donc l'id de la video youtube
+https://doc.ubuntu-fr.org/youtube-dl
+-- 
+
+Il faut récupérer une clé API google pour pouvoir utiliser l'API "YouTube Data API" après avoir aussi activé cette API dans le projet google
+
+
+
 Cours 4 (05.10.2020)
 terminer le cours 3
 - afficher les catégories film, series, TV et météo (TV devient en fait la catégorie favoris et il aura le logo de la cat. TV et toutes les chaines du plugin franceTV)
