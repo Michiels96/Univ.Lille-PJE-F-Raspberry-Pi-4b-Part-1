@@ -180,6 +180,10 @@ Cours 4 (05.10.2020)
 terminer le cours 3
 - afficher les catégories film, series, TV et météo (TV devient en fait la catégorie favoris et il aura le logo de la cat. TV et toutes les chaines du plugin franceTV)
 
+faire de la surveillance video et faire en sorte que la caméra s'active et enregistre des qu'il y a du mouvement.
+Possibilité de voir en direct depuis la catégorie 'favorites'
+https://opendomotech.com/videosurveillance-avec-raspberry-pi-et-motion/
+
 
 
 
