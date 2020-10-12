@@ -2,6 +2,7 @@
 - Mise en place du raspberry pi 4b
 - Installation de l'OS xBian sur la carte SD du raspberry
 - Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
+(comprend les points: configuration du réseau / configuration de ssh avec une clef cryptographique (à la place du mot de passe))
 - Enlever le bouton 'Exit' du menu paramètres de la GUI Kodi
 ___
 # Cours 2 (21.09.2020)
