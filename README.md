@@ -18,7 +18,7 @@ ___
     - fait réference au(x) point(s): 
         - scripting de mise à jour journalière via un dépôt git
 - Création d'un script qui s'exécute toutes les minutes et concatène le résultat d'affichage dans le fichier status.log qui lui ne sera pas déposé sur un repository mais restera sur le raspberry.
-Ce script doit afficher la date, la température, la fréquence du cpu et le 'Kodi status'.
+Ce script doit afficher la date, la température, la fréquence et le voltage du cpu et le 'Kodi status'.
     - fait réference au(x) point(s): 
         - scripting de monitoring thermique
 - Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
