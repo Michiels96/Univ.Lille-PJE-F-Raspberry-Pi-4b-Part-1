@@ -1,13 +1,20 @@
 # Cours 1 (14.09.2020)
 1. Mise en place du raspberry pi 4b
 
-    déballage raspberry pi 4b
+    J'ai pour ma part suivi ce tutoriel pour mettre en place le raspberry pi: www.okdo.com/getstarted
+    1.1 Déballage raspberry pi 4b
+    1.2 Collage des heatsinks sur le raspberry
+    1.3 Insertion du raspberry dans son boitier
+    1.4 Insertion de la carte micro sd dans le raspberry
 
-1. déballage raspberry pi 4b
-2. téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B)
-3. suivi des instructions d'installation sur le site www.okdo.com/getstarted
-3.1 collage des heatsinks sur le raspberry
-3.2 insertion du raspberry dans son boitier
+2. Installation de l'OS xBian sur la carte SD du raspberry
+
+    Le site web https://xbian.org/getxbian/ où jk'ai téléchargé l'image d'xBian m'a aussi aidé à flasher l'image sur la carte SD du raspberry
+    J'ai déjà fait cette manipulation pour un autre OS auparavant, j'ai donc utilisé un autre logicel pour flasher l'image sur la carte microSD.
+    (Balena etcher)
+    2.1 Téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B)
+
+
 4. flash de la carte sd avec raspberry pi imager (commande 'dd' pour le faire manuellement sur un sys. unix)
 5. insertion de la carte micro sd dans le raspberry
 6. branchement du cable hdmi dans le port 'hdmi 0' du raspberry et démarrage de celui-ci
