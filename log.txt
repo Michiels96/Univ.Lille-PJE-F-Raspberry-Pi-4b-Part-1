@@ -159,7 +159,8 @@ un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
 *-fontart.jpg qui est l'image de fond
 *actors ???
 et en dernier, il faut télécharger de youtube le trailer du film avec la commande youtube-dl
-(indice: telecharger sur allocine)
+j'ai appris que kodi peut repérer le trailer localement si celui ci à son nom qui se termine par '*-trailer.extension'
+https://forum.kodi.tv/showthread.php?tid=164443
 il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
 
 Pour le téléchargement des trailers:
