@@ -1,15 +1,15 @@
 # Cours 1 (14.09.2020)
-- Mise en place du raspberry pi 4b
+1.1 Mise en place du raspberry pi 4b
     - fait réference au(x) point(s):  
         - assemblage du matériel
-- Installation de l'OS xBian sur la carte SD du raspberry
+1.2 Installation de l'OS xBian sur la carte SD du raspberry
     - fait réference au(x) point(s):  
         - création de la carte sd
-- Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
+1.3 Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
     - fait réference au(x) point(s):  
         - configuration du réseau 
         - configuration de ssh avec une clef cryptographique (à la place du mot de passe)
-- Enlever le bouton 'Exit' du menu paramètres de la GUI Kodi
+1.4 Enlever le bouton 'Exit' du menu paramètres de la GUI Kodi
     - fait réference au(x) point(s):  
         - création d’une view spécifique « raspflix »
 ___
