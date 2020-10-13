@@ -177,7 +177,7 @@
     Commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande 'lsblk')
 
 4. Installer les paquets 'ffmpeg', 'tar', 'youtube-dl', 'Git' et 'wGet' sur le raspberry.
-    Lors de ce cours, le professeur m'a demandé d'installer les parquets suivants :
+    Lors de ce cours, le professeur m'a demandé d'installer les paquets suivants :
     tar, ffmpeg, youtube-dl, Git, wGet.
     Leur installation a consisté à les installer via la commande 'apt install <paquet>'
 
