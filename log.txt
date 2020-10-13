@@ -1,7 +1,7 @@
 Cours 1 (14.09.2020)
 1. Mise en place du raspberry pi 4b
 
-⋅⋅⋅ déballage raspberry pi 4b
+__déballage raspberry pi 4b
 
 1. déballage raspberry pi 4b
 2. téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B)
