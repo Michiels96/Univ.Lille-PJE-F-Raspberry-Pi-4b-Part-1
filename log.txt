@@ -128,6 +128,7 @@ il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et 
 il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
 
 Pour faciliter le raffraichissement de la page, on utilise des raccourcis inscrits dans le fichier keymap.xml, (à créer et à mettre dans /home/xbian/.kodi/userdata/keymaps)
+https://kodi.wiki/view/Archive:Foundation
 
 
 
@@ -175,7 +176,10 @@ https://doc.ubuntu-fr.org/youtube-dl
 
 Il faut récupérer une clé API google pour pouvoir utiliser l'API "YouTube Data API" après avoir aussi activé cette API dans le projet google
 
+Après discussion avec le professeur, il n'est pas obligatoire de passer par une API, les liens de bande d'annonce se trouvent deja dans le fichier .nfo du dossier du film.
 
+Pour récupérer le string spécifique dans le fichier .nfo:
+https://stackoverflow.com/questions/21077882/pattern-to-get-string-between-two-specific-words-characters-using-grep
 
 Cours 4 (05.10.2020)
 terminer le cours 3
