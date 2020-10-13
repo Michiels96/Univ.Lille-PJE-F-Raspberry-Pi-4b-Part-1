@@ -23,6 +23,9 @@ ___
     2.5 Exécution des commandes 'apt-get update' et 'apt-get upgrade' pour mettre à jour les paquets.
     2.6 Changement du mdp du compte root pour plus de droits avec la commande 'sudo passwd root' 
         (l'utilisateur xBian fait partie du groupe sudo donc j'ai le droit)
+    2.7 Mettre l'heure système sur la zone GMT de Bruxelles: commande 'ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime'
+        (https://www.systutorials.com/linux-setting-date-time-and-timezone/)
+
 
 ___
 3. Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
@@ -76,89 +79,107 @@ ___
 
 
 # Cours 2 (21.09.2020)
-- exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
-- connexion du disque dur au raspberry
-- installer les commandes tar, ffmpeg, youtube-dl, Git, wGet (tar et wget, déjà installés)
-- exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
+1. Création d'un script qui s'exécutera tous les jours entre 3 heures et 4 heures du matin qui éxécute le script situé sur le répository gitlab du professeur puis qui push le résultat d'affichage et le concatène dans le fichier workload.log du dossier logs/
+
+    Pour la fonctionnalité de s'éxécuter tous les jours entre 3 heures et 4 heures du matin, 
+    le professeur m'a indiqué que cron est la commande qui me permet d'automatiser cela.
+    J'ai donc fait quelques recherches sur internet pour apprendre son fonctionnement.
+    (https://doc.ubuntu-fr.org/cron)
+    La suite concerne un script situé sur un repository de Gitlab. J'ai du par la suite me re-familiariser 
+    avec les commandes git et donc j'ai du installer le paquet git sur mon raspberry.
+
+    Le script du professeur ne fait qu'afficher dans le fichier workload.log la date et l'heure actuelle 
+    avec en plus un message personnalisé dont le contenu doit être défini 
+    dans une variable initialisée dans le menu de la commande 'crontab -e'.
+
+    1.1 Création du dossier 'scripts' dans '~/'
+    1.2 Création du dossier 'git_scripts' dans '~/scripts/'
+    1.3 Clone du repository du professeur
+    
+    Dès ce moment j'ai d'abord essayé de créer un script par moi-même et de le faire éxécuter toutes les minutes par cron.
+    Mon script avait le contenu suivant:
+        #!/bin/bash
+        echo 'exécution de la commande #ls -l'
+        ls -l
+
+    J'ai ensuite modifié les droits d'éxécution avec la commande 'chmod +x cron.sh'.
+    La ligne à ajouter dans le contenu affiché après l'éxécution de la commande 'crontab -e'
+    était la suivante : * * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
+    Cette ligne éxécutera mon script toutes les minutes et redirigera les erreurs vers le fichier 'cron.log'.
+    Pour débugger une commande dans cron qui ne donne aucun résultat, on peut la débugger 
+    en terminant la commande par: 'commande > ~/err.txt 2>&1'.
+
+    Le problème suivant est d'éxéuter une commande git pour un répertoire qui n'est pas celui dans lequel le terminal est. 
+    Après avoir cherché comme éxécuter une commande Git dans un répertoire différent j'ai trouvé le paramètre '-C' qui résout ce problème.
+    Exemple: 'git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull'
+
+    Le problème suivant c'est qu'à chaque pull/commit/push, on me demandera mon username et mon password. 
+    Ce problème peut être évité avec la connexion au repository via une clé SSH. 
+    J'ai déjà essayé de remplacer la méthode http par ssh mais j'ai finalement opté pour la solution http 
+    car pour la connexion ssh il fallait reset le VPN pour l'université toutes les 8 heures.
+    Pour finalement garder mes 'credidentials' dans mon système, j'ai exécuté la commande 'git config --global credential.helper store'
+    qui me demandera pour la dernière fois mon username et password.
+    (https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension)
+
+    1.4 ligne à ajouter après l'éxécution de la commande 'crontab -e' :
+    1 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && bash $CORRECT_GIT_PATH/runit/runit.sh && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
+
+    Où le contenu de $CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f et rpi_name=michiels_raspberry_4b 
+        (rpi_name est une variable nécessaire pour le script à éxécuter)
+
+    Pour expliquer, cron va éxécuter à 3 heures du matin et 1 minute un checkout sur la branche pmichiels. 
+    Si cela réussit, il pull le repository pour vérifier s'il faut mettre à jour.
+    Il éxécute le script suivant:
+        #!/bin/bash
+        sleepTime=$(($RANDOM % 3600))
+        path_pje_f=/root/scripts/git_scripts/pje-f
+        sleep $sleepTime
+        echo "$(date) - alive $rpi_name" >> $path_pje_f/logs/workload.log
+
+    C'est dans ce script qu'il va endormir le système pendant un moment aléatoire entre 0 et 3600 secondes.
+    C'est ce qui permet de push entre 3 heures et 4 heures du matin de façon aléatoire.
+
+    Ensuite, cron va ajouter les changements faits (le script a modifié le fichier 'workload.log').
+    Il commit avec comme message la date et l'heure du commit.
+    Puis push sur le repository.
 
 
+2. Création d'un script qui s'exécute toutes les minutes et concatène le résultat d'affichage 
+    dans le fichier status.log qui lui ne sera pas déposé sur un repository mais restera sur le raspberry.
+    Ce script doit afficher la date, la température, la fréquence et le voltage du cpu et le 'Kodi status'.
 
-étape 1:
-1.1 création du script
-1.1.1 création du dossier 'scripts' dans ~/ (commande #mkdir scripts)
-1.1.2 création du fichier 'cron.sh' avec le contenu suivant:
-#!/bin/bash
-echo 'exécution de la commande #ls -l'
-ls -l
-1.1.3 autorisation de l'exécuter pour tt le monde, commande #chmod +x cron.sh
-1.1.4 test pour voir si le script fonctionne, commande #./cron.sh
+    2.1 Création du script diag.sh dans le dossier '~/scripts/'
+    2.2 Le script crée aura le contenu suivant :
+        #!/bin/bash
+        date=$(echo `date +\%d-\%m-\%Y` `date +\%H:\%M`)
+        temp=$(sensors | grep -oP '(?<=temp1:).*')
+        #freq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)
+        freq=$(vcgencmd measure_clock arm)
+        volt=$(vcgencmd measure_volts)
+        kodi_status='n/a'
+        echo ${date}\;${temp}\;${freq}\;${volt}\;${kodi_status}
 
-1.2 mise en place du démon 'cron'
-1.2.1 ajout du script à l'exécution de cron => #crontab -e 
-ajouter cette ligne en fin
-* * * * * /root/scripts/cron.sh >> /root/scripts/cron.log 
-(s'exécute ttes les minutes)
+    Pour la température, j'ai du installer un paquet en plus 'lm-sensors'.
+    J'ai du ensuite retirer une chaine de caractère représentant la température de l'output via la commande grep.
+    (https://unix.stackexchange.com/questions/393948/how-to-search-and-extract-string-from-command-output)
+    
+    La fréquence et le voltage peuvent aussi s'obtenir de la manière suivante :
+        freq=$(vcgencmd measure_clock arm)
+        volt=$(vcgencmd measure_volts)
 
-pour débugger une commande dans cron qui ne donne aucun résultat, on peut la débugger en terminant la commande par: 'commande > ~/err.txt 2>&1'
+3. Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
+    La commande 'lsblk' permet de voir si le disque dur est monté ou non.
+    
+    3.1 Se déplacer dans le dossier '/media/usbX' (X représente un chiffre)
+    3.2 Créer les dossiers 'Films' et 'Series' => 'mkdir Films'
+    
+    Info utile: 
+    Commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande 'lsblk')
 
-1.2.2 exécution du script à 03h00 + sleep qques sec. pour éviter une surcharge sur le repository du prof
-
-- installer git 
-#apt-get update 
-et 
-#apt-get install git
-- faire attendre une durée aléatoire entre 0 et 3600 secondes => #sleep $((RANDOM % 3600))
-le (&& permet d'exécuter la commande suivante uniquement si la précédente est réussie)
-
-changer l'heure et la mettre à celle de bruxelles => #ln -sf /usr/share/zoneinfo/Europe/Brussels /etc/localtime
-(https://www.systutorials.com/linux-setting-date-time-and-timezone/)
-
-Pour exécuter un pull a partir d'un répertoire différent:
-#git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull
-
-Le problème c'est qu'il va nous demander à chaque fois notre username et passwd donc après avoir lancé la commande #git config --global credential.helper store
-il faudra de nouveau exéctuer #git -C /root/scripts/git_scripts/pje-f-raspberry-pi-4b/ pull https://gitlab.univ-lille.fr/pierre.michiels.etu/pje-f-raspberry-pi-4b.git
-là il nous demandera pour la dernière fois notre username et passwd (https://stackoverflow.com/questions/35942754/how-to-save-username-and-password-in-git-gitextension)
-
-connexion au repository via SSH: https://www.youtube.com/watch?v=QaO9aWy4rmc
-
-le premier script 'runit.sh' ressemble à ceci:
-#!/bin/bash
-
-echo "$(date) - alive $rpi_name" >> /log/workload.log
-
-$rpi_name est une variable qui représente le nom hostname du raspberry, on l'ajoute en tant que variable dans #crontab -e
-
-ligne a ajouter apres avoir lancé la commande #crontab -e 
-=> 
-GIT_PATH=/root/scripts/git_scripts/pje-f-raspberry-pi-4b
-CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f
-rpi_name=michiels_raspberry_4b
-1 3 * * * git -C $CORRECT_GIT_PATH checkout pmichiels && git -C $CORRECT_GIT_PATH pull && bash $CORRECT_GIT_PATH/runit/runit.sh && git -C $CORRECT_GIT_PATH add . && git -C $CORRECT_GIT_PATH commit -m "commit `date +\%d-\%m-\%Y` - `date +\%H:\%M:\%S` michiels" && git -C $CORRECT_GIT_PATH push origin pmichiels
-
-
-
-et avec le paragraphe de '#' on ajoute les variables suivantes:
-rpi_name=michiels_raspberry_4b
-CORRECT_GIT_PATH=/root/scripts/git_scripts/pje-f
-
-
-2.0 connexion du disque dur au raspberry et créer les dossiers '/media/usb/Films' , '/media/usb/Series' , '/media/usb/video-clips'.
-raspberry le monte automatiquement
-commande pour lister les disques => #lsblk
-/media/sda est le disque dur
-/media/sda1 est la partition donc il faut créer les dossiers dans /media/sda1 qui nous mène dans ce cas ci au dossier '/media/usb0'
-commande pour démonter le disque 'sda1' => #umount -l /dev/sda1 (vérifier avant si c'est bien 'sda1' avec la commande #lsblk)
-
-
-3.0 exécuter un script qui sort a l'écran la temperature/fréquence cpu du raspberry '~/scripts/diag.sh'
-- installation du paquet 'lm-sensors' => #apt-get install lm-sensors
-- pour retirer une string de l'ouput de la commande #sensors => #sensors | grep -oP '(?<=temp1:).*'
-(https://unix.stackexchange.com/questions/393948/how-to-search-and-extract-string-from-command-output)
-
-sinon, pour la frequence et le voltage
-freq=$(vcgencmd measure_clock arm)
-volt=$(vcgencmd measure_volts)
+4. Installer les paquets 'ffmpeg', 'tar', 'youtube-dl', 'Git' et 'wGet' sur le raspberry.
+    Lors de ce cours, le professeur m'a demandé d'installer les parquets suivants :
+    tar, ffmpeg, youtube-dl, Git, wGet.
+    Leur installation a consisté à les installer via la commande 'apt install <paquet>'
 
 
 Cours 3 (28.09.2020)
