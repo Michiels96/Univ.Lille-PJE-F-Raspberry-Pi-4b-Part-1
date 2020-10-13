@@ -7,7 +7,7 @@
      1. 3 Insertion du raspberry dans son boitier
      1. 4 Insertion de la carte micro sd dans le raspberry
 
-
+___
 2. Installation de l'OS xBian sur la carte SD du raspberry
 
     Le site web https://xbian.org/getxbian/ où j'ai téléchargé l'image d'xBian.
