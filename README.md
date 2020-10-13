@@ -52,8 +52,7 @@ ___
 - Terminer le changement de GUI du cours 3
 - Réussir à connecter la caméra au raspberry et créer un répartoire dans 'favourites' qui permet de visualiser tous les enregistrements
     - fait réference au(x) point(s): 
-        - création du système de video surveillance ;
-
+        - création du système de video surveillance
 
 
 
