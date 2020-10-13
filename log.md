@@ -13,6 +13,7 @@ ___
    Le site web https://xbian.org/getxbian/ où j'ai téléchargé l'image d'xBian.
    J'ai du aller chercher sur internet un logiciel permettant de flasher l'image téléchargée sur ma carte micro SD, 
    j'ai utilisé raspberry pi imager.
+   
     2. 1 Téléchargement de l'OS xbian depuis le site https://xbian.org/getxbian/ (version Raspberry Pi 4B).
     2. 2 Flash de l'image xbian sur la carte micro sd avec raspberry pi imager (commande 'dd' pour le faire manuellement sans soft. sur un sys. unix).
     2. 3 Branchement du cable hdmi dans le port 'hdmi 0' du raspberry et démarrage de celui-ci.
