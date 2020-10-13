@@ -14,7 +14,7 @@
         - création d’une view spécifique « raspflix »
 ___
 # Cours 2 (21.09.2020)
-- Création d'un script qui s'exécutera tous les jours entre 3 heures et 4 heures du matin qui exécute le script situé sur le répository gitlab du professeur puis qui push le résultat d'affichage et le concatène dans le fichier workload.log du dossier logs/
+- Création d'un script qui s'exécutera tous les jours entre 3 heures et 4 heures du matin qui éxécute le script situé sur le répository gitlab du professeur puis qui push le résultat d'affichage et le concatène dans le fichier workload.log du dossier logs/
     - fait réference au(x) point(s): 
         - scripting de mise à jour journalière via un dépôt git
 - Création d'un script qui s'exécute toutes les minutes et concatène le résultat d'affichage dans le fichier status.log qui lui ne sera pas déposé sur un repository mais restera sur le raspberry.
