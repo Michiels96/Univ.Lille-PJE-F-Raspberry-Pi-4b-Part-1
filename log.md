@@ -2,7 +2,6 @@
 1. Mise en place du raspberry pi 4b
 
    J'ai pour ma part suivi ce tutoriel pour mettre en place le raspberry pi: www.okdo.com/getstarted
-   
      1.1 Déballage raspberry pi 4b
      1.2 Collage des heatsinks sur le raspberry
      1.3 Insertion du raspberry dans son boitier
