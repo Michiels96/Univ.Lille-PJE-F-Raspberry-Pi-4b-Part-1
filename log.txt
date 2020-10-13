@@ -1,4 +1,4 @@
-# Cours 1 (14.09.2020)
+#Cours 1 (14.09.2020)
 1. Mise en place du raspberry pi 4b
 
     J'ai pour ma part suivi ce tutoriel pour mettre en place le raspberry pi: www.okdo.com/getstarted
