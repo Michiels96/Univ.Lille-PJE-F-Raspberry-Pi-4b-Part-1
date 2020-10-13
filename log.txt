@@ -1,4 +1,4 @@
-#Cours 1 (14.09.2020)
+# Cours 1 (14.09.2020)
 1. Mise en place du raspberry pi 4b
 
     J'ai pour ma part suivi ce tutoriel pour mettre en place le raspberry pi: www.okdo.com/getstarted
@@ -39,9 +39,13 @@
     Il faut alors changer le fichier interfaces du dossier /etc/network/ de la machine hote pour configurer cela.
     Comme je n'ai pas les droits pour changer ce fichier quand je suis sur une machine de l'université 
     et que par la suite cela m'aurait ammené façe à d'autres problème de droits, j'ai depuis ce moment là
-    utilisé mon PC portable windows pour me connecter en SSh à mon raspberry via le logiciel putty.
+    utilisé mon PC portable windows pour me connecter en SSH à mon raspberry via le logiciel putty.
     J'ai donc configuré les paramètres de ma carte eth0 de mon windows pour me connecter via mon cable ethernet à mon raspberry.
+    Adresse IP de mon windows= 192.168.5.70.
 
+    3.9 Création d'une clé privée/publique SSH pour se connecter en tant que root sur mon raspberry.
+    3.9.1 Commande 'ssh-keygen -t rsa -b 4096' pour préciser de créer une clé suivant l'algo RSA avec une taille de 4096.
+    3.9.2 
     
 
 enlever le bouton exit du GUI kodi
