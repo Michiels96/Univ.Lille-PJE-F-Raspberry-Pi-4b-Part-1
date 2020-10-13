@@ -16,6 +16,8 @@
     2.3 Branchement du cable hdmi dans le port 'hdmi 0' du raspberry et démarrage de celui-ci.
     2.4 Boot d'xBian/Kodi 18.8
     2.5 Exécution des commandes 'apt-get update' et 'apt-get upgrade' pour mettre à jour les paquets.
+    2.6 Changement du mdp du compte root pour plus de droits avec la commande 'sudo passwd root' 
+        (l'utilisateur xBian fait partie du groupe sudo donc j'ai le droit)
 
 3. Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
 
@@ -45,15 +47,28 @@
 
     3.9 Création d'une clé privée/publique SSH pour se connecter en tant que root sur mon raspberry.
     3.9.1 Commande 'ssh-keygen -t rsa -b 4096' pour préciser de créer une clé suivant l'algo RSA avec une taille de 4096.
-    3.9.2 
+    3.9.2 Les 2 fichiers qui viennent d'être crées doivent aller dans des répertoires différents.
+            le fichier avec l'extension '.pub' doit être renommé en 'authorized_keys' et être placé dans /root/.ssh/
+            L'autre fichier est la clé privée qui elle doit être utilisé pour se connecter à distance depuis ma machine windows via putty
+            Pour le transfert du fichier, j'utilise le soft. WinSCP avec lequel je me connecte via le compte xBian 
+            dont je connais le mot de passe 'raspberry'. 
+            Dès lors je copie la clé privée pour le mettre dans un répertoire de mon PC Windows.
+            Dès maintenant je peux me reconnecter à mon raspberry en tant que root via Putty ou WinSCP en précisant la clé privée.
     
 
-enlever le bouton exit du GUI kodi
-- aller dans /usr/local/share/kodi/addons/skin.estuary/xml et éditer le fichier DialogButtonMenu.xml (faire une sauvegarde du fichier avant modif.)
-- remplacer la ligne (en dessous de <onclick>Quit()</onclick>) <visible>System.ShowExitButton</visible> par <visible>no</visible>
+4. Enlever le bouton 'Exit' du menu paramètres de la GUI Kodi
+
+    Après plusieurs recherches sur internet comment modifier l'affichage de la GUI Kodi, 
+    j'ai pu comprendre le fonctionnement interne de celui-ci avec les add-ons et plus spécifiquement l'add-on skin.estuary 
+    qui joue le rôle d'add-on d'affichage (ou theme) pour Kodi.
+
+    4.1 Pour enlever le bouton 'Exit' il faut aller dans le répertoire /usr/local/share/kodi/addons/skin.estuary/xml 
+    et éditer le fichier DialogButtonMenu.xml. (avant toute manipulation, j'ai sauvegardé l'entièreté de l'add-on pour avoir un backup)
+    4.2 Il faut ensuite remplacer la ligne '<visible>System.ShowExitButton</visible>' par '<visible>no</visible>'.
+    (https://iwf1.com/how-to-remove-power-off-system-from-kodis-shutdown-menu)
 
 
-Cours 2 (21.09.2020)
+# Cours 2 (21.09.2020)
 - exécuter un script a une heure précise avec 'cron' dans '~/scripts/cron.sh'
 - connexion du disque dur au raspberry
 - installer les commandes tar, ffmpeg, youtube-dl, Git, wGet (tar et wget, déjà installés)
