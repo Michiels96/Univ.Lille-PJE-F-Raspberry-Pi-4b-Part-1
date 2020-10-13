@@ -29,7 +29,7 @@ ___
 - Trouver un moyen de télécharger les trailers (bande d'annonce) des films et séries
     - fait réference au(x) point(s): 
         - récupération (automatisée/scriptée) des trailer de l’ensemble des films et séries sur le disque local
-## Modifier l'interface graphique pour qu'après il y ai:
+## Modifier l'interface graphique pour qu'après il y ai :
 Niveau navigation: 
 - Ne plus que laisser les catégories 'Movies', 'TV Shows', 'Weather' et 'Favourites'
     - fait réference au(x) point(s):  
