@@ -195,6 +195,26 @@
 
     J'ai appris que kodi peut repérer le trailer localement si celui-ci à son nom qui se termine par '*-trailer.extension'
     (https://forum.kodi.tv/showthread.php?tid=164443)
+    Dans un premier temps j'ai rédigé le script suivant: (voir scripts/trailerScriptUsingYTAPI.sh dans ce même repository)
+    Pour résumer, ce script va récuperer un résultat json qui contient les données (venant de l'API youtube) pour chaque film du dossier Films.
+    Il va reprendre le nom du dossier du film pour le mettre en tant que paramètre dans l'URL 
+    pour ensuite récupérer sous format json la réponse de l'API Youtube. 
+    Il est possible que le quota de recherche ai dépassé la limite de requetes de l'API Youtube. 
+    Dès lors, lorsque ma réponse json a un error code '403' je dois post-poser le téléchargement 24h plus tard.
+    Je sauve donc la dernière tentative (cad. le nom du dernier film sur lequel je voulais télécharger la bande d'annonce) à la fin
+    d'un fichier.
+    Pour reprendre à partir de ce moment là, je reprends la liste des noms de dossiers pour enlever ce qui précède le dernier film téléchargé
+    et j'obtiens un tableau qui contiens plus que le films dont le trailer est manquant.
+
+    'jq' est la commande qui me permet de reprendre de l'information à partir d'un contenu json.
+
+    J'ai eu un soucis de téléchargement avec la commande 'youtube dl'. 
+    En effet, la version installée via 'apt' n'est plus valide, j'ai du alors  télécharger depuis le dépot officiel.
+    (https://doc.ubuntu-fr.org/youtube-dl)
+
+    Pour pouvoir utiliser l'API Youtube, j'ai du créer un projet dans google cloud 
+    ce qui m'a permit de créer une clé API qui m'a permis d'utiliser l'API.
+
 
 - modifier l'interface, coté navigation (partie gauche)
 il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
