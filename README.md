@@ -30,7 +30,7 @@ ___
     - fait réference au(x) point(s): 
         - récupération (automatisée/scriptée) des trailer de l’ensemble des films et séries sur le disque local
 ## Modifier l'interface graphique pour qu'après il y ai :
-Niveau navigation: 
+Niveau navigation : 
 - Ne plus que laisser les catégories 'Movies', 'TV Shows', 'Weather' et 'Favourites'
     - fait réference au(x) point(s):  
         - création d’une view spécifique « raspflix »
@@ -44,7 +44,7 @@ Niveau navigation:
     - fait réference au(x) point(s): 
         - création d’une view spécifique « raspflix »
         
-Niveau Affichage: (Pour les catégories 'Movies' et 'TV Shows')
+Niveau Affichage : (Pour les catégories 'Movies' et 'TV Shows')
 - Lorsque le focus est sur une jaquette de la sous-catégorie 'Recently added movies'/'Recently added episodes', ajouter la description au dessus partie gauche et la bande d'annonce au-dessus partie droite.
     - fait réference au(x) point(s): 
         - création d’une view spécifique « raspflix »
