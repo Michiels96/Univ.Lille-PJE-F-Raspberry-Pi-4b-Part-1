@@ -222,7 +222,8 @@
     Pour cela j'ai du faire en sorte de pouvoir récupérer une chane de caractère dans un fichier selon un certain pattern.
     (https://stackoverflow.com/questions/21077882/pattern-to-get-string-between-two-specific-words-characters-using-grep)
 
-    
+    Concernant les séries, il n'y a tout simplement pas d'url vers une video youtube pour télécharger le trailer. 
+    Je n'ai donc pas pu télécharger les trailes des séries.
 
 
 
