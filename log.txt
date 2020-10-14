@@ -215,6 +215,16 @@
     Pour pouvoir utiliser l'API Youtube, j'ai du créer un projet dans google cloud 
     ce qui m'a permit de créer une clé API qui m'a permis d'utiliser l'API.
 
+    Après discussion avec le professeur, j'aurais pu faire plus simple. 
+    Il n'est pas obligatoire de passer par une API, les liens de bande d'annonce se trouvent deja dans le fichier .nfo du dossier du film.
+
+    J'ai donc par la suite adapté le code de mon script (dossier scripts/trailerScript.sh de ce même repository).
+    Pour cela j'ai du faire en sorte de pouvoir récupérer une chane de caractère dans un fichier selon un certain pattern.
+    (https://stackoverflow.com/questions/21077882/pattern-to-get-string-between-two-specific-words-characters-using-grep)
+
+    
+
+
 
 - modifier l'interface, coté navigation (partie gauche)
 il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
@@ -234,45 +244,13 @@ Il faut donc le télécharger depuis kodi et son dossier dans le système unix s
 
 
 
-- il faut aussi rediriger ce que le script du prof télécharge dans le disque dur /media/usb0/Films ou encore /media/usb0/Series etc.
-comment faire:
-exécuter les commandes=>
-
-#wget -q https://www.grimaud.ovh/pjef/Films.tar -O tmp.tar >> logs/workload.log
-#tar -xvf tmp.tar >> logs/workload.log
-#rm tmp.tar >> logs/workload.log
-#wget -q https://www.grimaud.ovh/pjef/Series.tar -O tmp.tar >> logs/workload.log
-#tar -xvf tmp.tar >> logs/workload.log
-#rm tmp.tar >> logs/workload.log
-
-puis déplacer les dossiers Films et Series dans le disque dur (/media/usb0/)
-
 dans chaque dossier on a un fichier mkv de taille 0 octet
 un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
 *-poster.jpg qui est la jaquette
 *-fontart.jpg qui est l'image de fond
 *actors ???
-et en dernier, il faut télécharger de youtube le trailer du film avec la commande youtube-dl
-j'ai appris que kodi peut repérer le trailer localement si celui ci à son nom qui se termine par '*-trailer.extension'
-https://forum.kodi.tv/showthread.php?tid=164443
-il faut ensuite apres avoir téléchargé le trailer, le convertir en fichier mkv avec la commande ffmpeg
 
-Pour le téléchargement des trailers:
-installer le paquet curl pour récuperer un résultat json de l'api et jq pour pouvoir retirer des informations a partir du résultat json.
-- Créer un script bash:
--- qui va récuperer un fichier json qui contient les données (venant de l'API youtube) pour chaque film du dossier Films
--- récupère l'id de la 1ere video trouvée via la commande 'jq'
--- télécharge la video (via la commande 'youtube-dl, a installer depuis le dépot officiel car la version via 'apt' est obselète) 
-avec le lien http qui contient donc l'id de la video youtube
-https://doc.ubuntu-fr.org/youtube-dl
--- 
 
-Il faut récupérer une clé API google pour pouvoir utiliser l'API "YouTube Data API" après avoir aussi activé cette API dans le projet google
-
-Après discussion avec le professeur, il n'est pas obligatoire de passer par une API, les liens de bande d'annonce se trouvent deja dans le fichier .nfo du dossier du film.
-
-Pour récupérer le string spécifique dans le fichier .nfo:
-https://stackoverflow.com/questions/21077882/pattern-to-get-string-between-two-specific-words-characters-using-grep
 
 Cours 4 (05.10.2020)
 terminer le cours 3
