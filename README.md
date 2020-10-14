@@ -43,6 +43,7 @@ Niveau navigation:
 - Renommer la catégorie 'Favourites' par 'TV' et remplacer le logo par celui de la catégorie supprimée 'live TV'
     - fait réference au(x) point(s): 
         - création d’une view spécifique « raspflix »
+        
 Niveau Affichage: (Pour les catégories 'Movies' et 'TV Shows')
 - Lorsque le focus est sur une jaquette de la sous-catégorie 'Recently added movies'/'Recently added episodes', ajouter la description au dessus partie gauche et la bande d'annonce au-dessus partie droite.
     - fait réference au(x) point(s): 
