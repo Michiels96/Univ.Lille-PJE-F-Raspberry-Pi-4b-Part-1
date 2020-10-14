@@ -241,9 +241,6 @@
     Pour enlever certaines catégories, j'ai donc mis en commentaire ceux qui n'étaient pas nécessaires.
     (elles sont dans la balise <control type="fixedlist" id="9000">)
 
-
-
-
 4. Installer l'add-on france.tv pour ensuite mettre chaque chaine dans la catégorie 'Favourites'
 
     Pour ce point, je suis allé dans le menu des paramètres puis sur add-ons car j'avais déjà enlevé la catégorie add-on du menu principal.
