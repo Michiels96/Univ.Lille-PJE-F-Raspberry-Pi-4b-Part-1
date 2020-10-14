@@ -30,7 +30,7 @@
 
 3. Connexion du pc hôte au raspberry avec un cable ethernet via le protocole SSH
 
-    J'ai, dans un premier temps, su me connecter en SSH à mon raspberry via Wifi par le biais dun réseau local de mon smartphone en suivant le guide
+    J'ai, dans un premier temps, su me connecter en SSH à mon raspberry via Wifi par le biais d'un réseau local de mon smartphone en suivant le guide
     de ce site (https://docs.dataplicity.com/docs/get-pi-connected-to-the-internet).
     
     3.1 J'ai installé par la suite le service SSH sur mon raspberry avec la commande 'sudo apt-get install ssh'
@@ -224,6 +224,73 @@
 
     Concernant les séries, il n'y a tout simplement pas d'url vers une video youtube pour télécharger le trailer. 
     Je n'ai donc pas pu télécharger les trailes des séries.
+
+3. Ne plus que laisser les catégories 'Movies', 'TV Shows', 'Weather' et 'Favourites
+
+    Depuis le moment ou j'ai enlevé le bouton 'Exit', j'ai pu me familiariser avec la customisation d'affichage de l'addon estuary.
+    J'ai en plus ajouté un fichier xml qui me permet de rafraichir l'affichage pour voir les changements après avoir modifier un fichier xml.
+    (https://kodi.wiki/view/Estuary_Modification)
+    Il est à retenir que j'ai d'abord essayer de mettre ce fichier xml dans /usr/local/share/kodi/userdata/keymaps
+    mais rien ne s'exécutait alors je l'ai déplacé dans /home/xbian/.kodi/userdata/keymaps.
+    Après avoir suivi ce tutoriel, dès l'appui de la touche F5, je peux rafraichir l'affichage. 
+    F8 permet d'afficher un outil de debug pour voir quel élément est pointé par la souris/focus.
+
+    Dès le moment où j'ai vu que la page d'accueil est le contenu du fichier Home.xml, 
+    je suis allé inspecter ce fichier dans le dossier /usr/local/share/kodi/addons/xml/.
+
+    Pour enlever certaines catégories, j'ai donc mis en commentaire ceux qui n'étaient pas nécessaires.
+    (elles sont dans la balise <control type="fixedlist" id="9000">)
+
+
+
+
+4. Installer l'add-on france.tv pour ensuite mettre chaque chaine dans la catégorie 'Favourites'
+
+    Pour ce point, je suis allé dans le menu des paramètres puis sur add-ons car j'avais déjà enlevé la catégorie add-on du menu principal.
+    J'ai ensuite cliqué sur 'install from repository > search > france.tv'.
+    De là, après avoir ouvert le plugin installé, j'ai fait un clic droit sur chaque chaine pour l'ajouter dans la catégories 'Favourites'.
+
+5. Installer un add-on fonctionnel pour la catégorie 'Weather'
+
+    Comme pour le point précédent, je suis allé dans les paramètres add-ons et j'ai téléchargé le premier add-on de la catégorie weather 
+    cad. 'Yahoo! Weather'.
+
+6. Renommer la catégorie 'Favourites' par 'TV' et remplacer le logo par celui de la catégorie supprimée 'live TV'
+
+    Ce point concerne aussi l'affichage de Home.xml. Pour renommer la catégorie Favourites par TV, 
+    il m'a suffit de changer la valeur de la balise <label> par 'TV'.
+    Pour le logo, je suis allé reprendre la valeur de la balise <thumb> de la catégorie 'live TV' mise en précédemment en commentaire.
+
+7 Pour les catégories Movies et TV Shows, mettre en place un affichage dont la navigation de jaquette se trouve dans la partie basse de l'écran; 
+    la partie droite doit contenir la description et la partie gauche le trailer.
+
+    Concernant la description, j'ai eu du mal à trouver comment là récupérer. 
+    C'est par la suite qu'un autre élève m'a dis d'aller sur la page descriptive d'un film en faisant clic droit sur une jaquette.
+    C'est à partir de ce moment là que j'ai su que toute info utile dans film se trouve dans le fichier DialogVideoInfo.xml.
+
+    le contenu de la description est obtenue via '$INFO[ListItem.Plot]'.
+
+    J'ai du alors, pour l'intégrer au-dessus de la jaquette apprendre comment insérer un nouvel élément dans un <control type="grouplist">.
+    J'ai donc ajouté juste avant chaque include concernant les movies et tv shows:
+    <control type="label" id="5202">
+        <left>80</left>
+        <top>60</top>
+        <width>600</width>
+        <height min="200" max="550">auto</height>
+        <visible allowhiddenfocus="true">Control.HasFocus(5200)</visible>
+        <label>$INFO[ListItem.Plot]</label>
+        <wrapmultiline>true</wrapmultiline>
+        <align>left</align>
+    </control>
+
+    avec un id différent pour chaque control.
+
+    La particularité sur le comment faire pour récupérer la bonne description pour la bonne jaquette se fait dans la balise <visible>.
+    En effet, ce n'est qu'au moment ou la jaquette concernée à le focus que le texte sur celui si s'affichera. Sinon rien n'est affiché.
+
+    (Partie droite - trailers)
+
+
 
 
 
