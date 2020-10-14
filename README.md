@@ -45,7 +45,7 @@ Niveau navigation :
         - création d’une view spécifique « raspflix »
         
 Niveau Affichage : (Pour les catégories 'Movies' et 'TV Shows')
-- Lorsque le focus est sur une jaquette de la sous-catégorie 'Recently added movies'/'Recently added episodes', ajouter la description au dessus partie gauche et la bande d'annonce au-dessus partie droite.
+- Lorsque le focus est sur une jaquette de la sous-catégorie 'Recently added movies'/'Unwatched movies'/'Random movies', ajouter la description au dessus partie gauche et la bande d'annonce au-dessus partie droite.
     - fait réference au(x) point(s): 
         - création d’une view spécifique « raspflix »
 ___
