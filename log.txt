@@ -261,7 +261,7 @@
     il m'a suffit de changer la valeur de la balise <label> par 'TV'.
     Pour le logo, je suis allé reprendre la valeur de la balise <thumb> de la catégorie 'live TV' mise en précédemment en commentaire.
 
-7 Pour les catégories Movies et TV Shows, mettre en place un affichage dont la navigation de jaquette se trouve dans la partie basse de l'écran; 
+7. Pour les catégories Movies et TV Shows, mettre en place un affichage dont la navigation de jaquette se trouve dans la partie basse de l'écran; 
     la partie droite doit contenir la description et la partie gauche le trailer.
 
     Concernant la description, j'ai eu du mal à trouver comment là récupérer. 
@@ -290,39 +290,19 @@
 
     (Partie droite - trailers)
 
+    Le reste des modifications d'affichage dans Home.xml concernent le positionnement et la correction des éléments ajoutés/retirés.
+    Par exemple, pour afficher plus que la partie navigation (partie gauche) avec les icones sans leur noms, 
+    il m'a suffit de mettre en commentaire les balises <label> de chaque élément et de corriger le <width> et <top> pour le <control id="9000">,
+    <orientation> et <height> pour le <control id="700">.
 
 
 
 
-- modifier l'interface, coté navigation (partie gauche)
-il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
-il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
+# Cours 4 (05.10.2020)
+1. Réussir à connecter la caméra au raspberry et créer un add-on et l'ajouter dans dans l'ancienne catégorie 'favourites'
+    qui permet de visualiser tous les enregistrements situés sur le disque dur.
+    Il faut que la caméra puisse démarrer un enregistrement dès qu'elle détecte du mouvement.
 
-Pour faciliter le raffraichissement de la page, on utilise des raccourcis inscrits dans le fichier keymap.xml, (à créer et à mettre dans /home/xbian/.kodi/userdata/keymaps)
-https://kodi.wiki/view/Archive:Foundation
-
-
-
-Pour afficher plus que les catégories film, series, TV et météo, il faut aller dans le fichier Home.xml (/usr/local/share/kodi/addons/skin.estuary/xml/Home.xml) et mettre en commentaire les balises <item> et leur contenu à partir de la ligne avec "<control type="fixedlist" id="9000">"
-(voir point 6 - https://kodi.wiki/view/Estuary_Modification)
-
-- Il faut ajouter un addon pour la catégorie TV addon franceTV 
-Il faut donc le télécharger depuis kodi et son dossier dans le système unix se trouve à: /home/xbian/.kodi/addons/plugin.video.francetv
-(après l'exercice, j'ai appris qu'il m'est impossible de transferer l'addon france tv de la catégorie 'video' vers la catégorie 'TV')
-
-
-
-dans chaque dossier on a un fichier mkv de taille 0 octet
-un fichier nfo qui faudra mettre a jour qui contient ttes les infos du film
-*-poster.jpg qui est la jaquette
-*-fontart.jpg qui est l'image de fond
-*actors ???
-
-
-
-Cours 4 (05.10.2020)
-terminer le cours 3
-- afficher les catégories film, series, TV et météo (TV devient en fait la catégorie favoris et il aura le logo de la cat. TV et toutes les chaines du plugin franceTV)
 
 faire de la surveillance video et faire en sorte que la caméra s'active et enregistre des qu'il y a du mouvement.
 Possibilité de voir en direct depuis la catégorie 'favorites'
