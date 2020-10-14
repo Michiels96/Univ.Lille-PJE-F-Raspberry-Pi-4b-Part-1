@@ -51,7 +51,8 @@ Niveau Affichage : (Pour les catégories 'Movies' et 'TV Shows')
 ___
 # Cours 4 (05.10.2020)
 - Terminer le changement de GUI du cours 3
-- Réussir à connecter la caméra au raspberry et créer un add-on et l'ajouter dans dans l'ancienne catégorie 'favourites' qui permet de visualiser tous les enregistrements situés sur le disque dur.
+- Réussir à connecter la caméra au raspberry et créer un add-on et l'ajouter dans dans l'ancienne catégorie 'favourites' 
+qui permet de visualiser tous les enregistrements situés sur le disque dur.
 Il faut que la caméra puisse démarrer un enregistrement dès qu'elle détecte du mouvement.
     - fait réference au(x) point(s): 
         - création du système de video surveillance
