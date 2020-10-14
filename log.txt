@@ -182,7 +182,20 @@
     Leur installation a consisté à les installer via la commande 'apt install <paquet>'
 
 
-Cours 3 (28.09.2020)
+# Cours 3 (28.09.2020)
+1. Exécuter le script du professeur pour récuperer les Films et Séries puis les copier dans le disque dur dans leur répertoire respectifs.
+
+    J'ai eu des problèmes de path lors de l'éxécution du script du professeur, j'ai alors éxécuté ligne par ligne manuellement.
+    J'ai donc téléchargé le fichier .tar puis j'ai décompressé le fichier sur le disque dur à l'emplacement /media/usb0/
+    ce qui m'a donné un nouveau fichier 'Films' avec tout le contenu nécessaire.    
+    J'ai fait la même démarche pour les séries.
+
+
+2. Trouver un moyen de télécharger les trailers (bande d'annonce) des films et séries.
+
+    J'ai appris que kodi peut repérer le trailer localement si celui-ci à son nom qui se termine par '*-trailer.extension'
+    (https://forum.kodi.tv/showthread.php?tid=164443)
+
 - modifier l'interface, coté navigation (partie gauche)
 il faut faire en sorte qu'il n'y a plus que les catégories film, series, TV et météo restent (supprimer ou créer les catégories manquantes)
 il faut en fait avoir un ou plusieurs fichiers xml (qui sont sur un repository) qui représentent le menu qu'on a envie d'avoir et un script qui git pull et remplace les fichiers de l'ancien menu et les replacent avec les fichiers xml du repository.
