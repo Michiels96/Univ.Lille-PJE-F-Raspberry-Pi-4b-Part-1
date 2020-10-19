@@ -56,6 +56,9 @@ qui permet de visualiser tous les enregistrements situés sur le disque dur.
 Il faut que la caméra puisse démarrer un enregistrement dès qu'elle détecte du mouvement.
     - fait réference au(x) point(s): 
         - création du système de video surveillance
+        - installation et configuration de motion 
+        - création d’un plugin « visualisation des enregistrements de la camera de surveillance »  au sein de kodi pour visualisé les enregistrements.
+        - test de charge et monitoring de raspflix avec alarme en cas de dépassement. 
 
 
 
