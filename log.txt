@@ -300,6 +300,26 @@
     qui permet de visualiser tous les enregistrements situés sur le disque dur.
     Il faut que la caméra puisse démarrer un enregistrement dès qu'elle détecte du mouvement.
 
+    Pour installer la camera sur la raspberry, j'ai suivi les instructions de cette vidéo: https://www.youtube.com/watch?v=lAbpDRy-gc0
+    Pour pouvoir utiliser la caméra au niveau de l'OS j'ai effectué quelques recherches sur internet et j'ai pu trouver 'motion'.
+    (https://opendomotech.com/videosurveillance-avec-raspberry-pi-et-motion/)
+
+    J'ai suivi ce tutoriel étape par étape. pour ensuite pouvoir enregistrer 
+    dès la détection de mouvement au-dela d'un changement de 1500 pixels une vidéo qui s'enregistre sur le disque dur.
+    J'ai remarqué après l'enregistrement d'une vidéo que la vidéo n'est pas fluide, 
+    j'ai donc recherché sur internet et j'ai pu trouver le paramètre à modifier dans le fichier /etc/motion/motion.conf: 
+    stream_maxrate qui était sur 1 et je l'ai mis sur 120.
+
+    Pour la création d'un add-on pour pouvoir visualiser toutes les vidéos enregistrées, 
+    j'ai repris un template d'un add-on qui permet de lire des vidéos sur le repository suivant: https://github.com/romanvm/plugin.video.example
+
+    J'ai pu obtenir ce lien via un guide pour créer un add-on de lecture de vidéos sur le site web de Kodi: https://kodi.wiki/view/HOW-TO:Video_addon
+
+    J'ai, par la suite modifié le fichier main.py 
+    (se situe dans le dossier création_add-on_pour_voir_les_videos_de_surveillance/plugin.video.example-master de ce repository)
+    
+
+
 
 faire de la surveillance video et faire en sorte que la caméra s'active et enregistre des qu'il y a du mouvement.
 Possibilité de voir en direct depuis la catégorie 'favorites'
