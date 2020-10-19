@@ -305,7 +305,7 @@
     (https://opendomotech.com/videosurveillance-avec-raspberry-pi-et-motion/)
 
     J'ai suivi ce tutoriel étape par étape. pour ensuite pouvoir enregistrer 
-    dès la détection de mouvement au-dela d'un changement de 1500 pixels une vidéo qui s'enregistre sur le disque dur.
+    dès la détection de mouvement au-delà d'un changement de 1500 pixels une vidéo qui s'enregistre sur le disque dur.
     J'ai remarqué après l'enregistrement d'une vidéo que la vidéo n'est pas fluide, 
     j'ai donc recherché sur internet et j'ai pu trouver le paramètre à modifier dans le fichier /etc/motion/motion.conf: 
     stream_maxrate qui était sur 1 et je l'ai mis sur 120.
@@ -317,7 +317,13 @@
 
     J'ai, par la suite modifié le fichier main.py 
     (se situe dans le dossier création_add-on_pour_voir_les_videos_de_surveillance/plugin.video.example-master de ce repository)
-    
+    qui reprends la liste des fichiers présents dans le répertoire d'enregistrement du disque dur.
+    Pour ensuite reprendre leur date et en faire des catégories pour qu'à la fin, toutes les vidéos soient répertoriées par leur date.
+
+    J'ai aussi modifié le nom du plugin en 'Surveillance video' depuis le fichier 'addon.xml'.
+
+    Pour mettre l'add-on dans l'ancienne catégorie 'favourites' 
+    j'ai, depuis le menu d'add-on, fait un clic droit sur l'add-on et sélectionné 'Add to favourites'.
 
 
 
