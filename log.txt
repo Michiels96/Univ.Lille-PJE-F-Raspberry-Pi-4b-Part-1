@@ -282,16 +282,32 @@
 
     avec un id différent pour chaque control.
 
-    La particularité sur le comment faire pour récupérer la bonne description pour la bonne jaquette se fait dans la balise <visible>.
+    La particularité sur le "comment faire pour récupérer la bonne description pour la bonne jaquette" se fait dans la balise <visible>.
     En effet, ce n'est qu'au moment ou la jaquette concernée à le focus que le texte sur celui si s'affichera. Sinon rien n'est affiché.
-
-    (Partie droite - trailers)
 
     Le reste des modifications d'affichage dans Home.xml concernent le positionnement et la correction des éléments ajoutés/retirés.
     Par exemple, pour afficher plus que la partie navigation (partie gauche) avec les icones sans leur noms, 
     il m'a suffit de mettre en commentaire les balises <label> de chaque élément et de corriger le <width> et <top> pour le <control id="9000">,
     <orientation> et <height> pour le <control id="700">.
 
+    Concernant l'affichage des trailers, j'ai cherché pendant longtemps comment mettre en lecture le trailer dès qu'on à le focus sur une jaquette.
+    J'ai pu savoir comment faire avec l'aide d'un autre élève qui met ce <control> :
+    <control type="button">
+        <visible allowhiddenfocus="true">false</visible>
+        <onfocus condition="!Player.Playing + Control.HasFocus(5200)">
+            AlarmClock(trailerClock,PlayMedia($ESCINFO[ListItem.trailer], 1),00:03,silent)
+        </onfocus>
+        <onunfocus>CancelAlarm(trailerClock,true)</onunfocus>
+        <onunfocus condition="String.Contains(Player.Filename, -trailer.)">Stop</onunfocus>
+    </control>
+
+    dans le fichier Include_home.xml du dossier xml.
+
+    Ensuite, pour la lecture dans la partie droite de l'affichage, j'ai utilisé un <ontrol> de type videowindow.
+    (https://kodi.wiki/view/Video_Control)
+
+    Pour pouvoir agencer le trailer à droite de la description, j'ai mis les 2 <control> (celui de la description et celui du trailer)
+    dans un <control> de type group.
 
 
 
@@ -324,16 +340,5 @@
 
     Pour mettre l'add-on dans l'ancienne catégorie 'favourites' 
     j'ai, depuis le menu d'add-on, fait un clic droit sur l'add-on et sélectionné 'Add to favourites'.
-
-
-
-faire de la surveillance video et faire en sorte que la caméra s'active et enregistre des qu'il y a du mouvement.
-Possibilité de voir en direct depuis la catégorie 'favorites'
-https://opendomotech.com/videosurveillance-avec-raspberry-pi-et-motion/
-
-
-
-
-
 
 
