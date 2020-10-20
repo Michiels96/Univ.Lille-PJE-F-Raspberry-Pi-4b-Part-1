@@ -301,7 +301,7 @@
         <onunfocus condition="String.Contains(Player.Filename, -trailer.)">Stop</onunfocus>
     </control>
 
-    dans le fichier Include_home.xml du dossier xml.
+    dans le fichier Includes_home.xml du dossier xml.
 
     Ensuite, pour la lecture dans la partie droite de l'affichage, j'ai utilisé un <ontrol> de type videowindow.
     (https://kodi.wiki/view/Video_Control)
