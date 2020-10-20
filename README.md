@@ -1,3 +1,6 @@
+## Ce fichier joue le rôle de table des matières pour le fichier log.txt
+
+
 # Cours 1 (14.09.2020)
 - Mise en place du raspberry pi 4b
     - fait réference au(x) point(s):  
