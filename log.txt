@@ -156,7 +156,7 @@
         #freq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)
         freq=$(/opt/vc/bin/vcgencmd measure_clock arm)
         volt=$(/opt/vc/bin/vcgencmd measure_volts)
-        kodi_status=$(kodi status)
+        #kodi_status=$(kodi status)
         echo ${date}\;${temp}\;${freq}\;${volt}\;${kodi_status}
 
     Pour la température, j'ai du installer un paquet en plus 'lm-sensors'.
@@ -171,6 +171,10 @@
     J'ai alors précisé le path complet de la commande 'vcgencmd' via la commande 'which' 
     qui m'a permet de récupérer le path complet de la commande.
     (https://stackoverflow.com/questions/18606159/in-linux-how-to-get-the-full-path-of-a-command-i-am-using)
+
+    Pour 'kodi status', il m'est impossible de l'éxécuter via cron car celui-ci ne le reconnais pas comme commande. 
+    Même avec la commande 'which' pour connaitre sont path complet ne donne rien.
+    (pourtant 'kodi status' en ligne de commande fonctionne)
 
 3. Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
     La commande 'lsblk' permet de voir si le disque dur est monté ou non.
