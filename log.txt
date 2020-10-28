@@ -154,9 +154,9 @@
         date=$(echo `date +\%d-\%m-\%Y` `date +\%H:\%M`)
         temp=$(sensors | grep -oP '(?<=temp1:).*')
         #freq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)
-        freq=$(vcgencmd measure_clock arm)
-        volt=$(vcgencmd measure_volts)
-        kodi_status='n/a'
+        freq=$(/opt/vc/bin/vcgencmd measure_clock arm)
+        volt=$(/opt/vc/bin/vcgencmd measure_volts)
+        kodi_status=$(kodi status)
         echo ${date}\;${temp}\;${freq}\;${volt}\;${kodi_status}
 
     Pour la température, j'ai du installer un paquet en plus 'lm-sensors'.
@@ -166,6 +166,11 @@
     La fréquence et le voltage peuvent aussi s'obtenir de la manière suivante :
         freq=$(vcgencmd measure_clock arm)
         volt=$(vcgencmd measure_volts)
+    Mais pour ma part, crontab n'affichait pas ces données car la commande était introuvable pour lui.
+    (https://discourse.osmc.tv/t/vcgencmd-display-power-o-not-working-in-crontab/86742)
+    J'ai alors précisé le path complet de la commande 'vcgencmd' via la commande 'which' 
+    qui m'a permet de récupérer le path complet de la commande.
+    (https://stackoverflow.com/questions/18606159/in-linux-how-to-get-the-full-path-of-a-command-i-am-using)
 
 3. Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
     La commande 'lsblk' permet de voir si le disque dur est monté ou non.
