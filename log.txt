@@ -157,6 +157,7 @@
         freq=$(/opt/vc/bin/vcgencmd measure_clock arm)
         volt=$(/opt/vc/bin/vcgencmd measure_volts)
         #kodi_status=$(kodi status)
+        kodi_status=$(service xbmc status)
         echo ${date}\;${temp}\;${freq}\;${volt}\;${kodi_status}
 
     Pour la température, j'ai du installer un paquet en plus 'lm-sensors'.
@@ -172,9 +173,14 @@
     qui m'a permet de récupérer le path complet de la commande.
     (https://stackoverflow.com/questions/18606159/in-linux-how-to-get-the-full-path-of-a-command-i-am-using)
 
-    Pour 'kodi status', il m'est impossible de l'éxécuter via cron car celui-ci ne le reconnais pas comme commande. 
+    Pour 'kodi status', il m'est impossible de l'exécuter via cron car celui-ci ne le reconnait pas comme commande. 
     Même avec la commande 'which' pour connaitre sont path complet ne donne rien.
-    (pourtant 'kodi status' en ligne de commande fonctionne)
+    (pourtant 'kodi status' en ligne de commande fonctionne).
+    La solution a été de récupérer les meme données depuis l'exécution de la commande 'service xbmc status'.
+    Comme cron n'est pas root, il faut qu'il exécute le script en tant que superutilisateur donc j'ai du rajouter 'sudo' pour exécuter le script.
+    Dans crontab -e =>
+    * * * * * sudo bash /root/scripts/diag.sh >> /root/scripts/status.log
+
 
 3. Connecter le disque dur et y créer les dossiers 'Films' et 'Series'
     La commande 'lsblk' permet de voir si le disque dur est monté ou non.
