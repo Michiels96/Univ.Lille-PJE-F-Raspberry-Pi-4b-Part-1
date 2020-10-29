@@ -317,8 +317,14 @@
     </control>
 
     dans le fichier Includes_home.xml du dossier xml.
+    Il m'a ensuite fallu adapter ce code pour qu'il s'exécute à chaque fois qu'on à le focus sur une sous-catégorie de films.
+    J'ai donc adapté la balise <onfocus> ainsi:
+    <onfocus condition="!Player.Playing + [Control.HasFocus(5100) | Control.HasFocus(5200) | Control.HasFocus(5300) | Control.HasFocus(5400)]">
 
-    Ensuite, pour la lecture dans la partie droite de l'affichage, j'ai utilisé un <ontrol> de type videowindow.
+    Pour comprendre les conditions je suis allé m'informer sur cette page:
+    https://kodi.wiki/view/Conditional_visibility
+
+    Ensuite, pour la lecture dans la partie droite de l'affichage, j'ai utilisé un <control> de type videowindow.
     (https://kodi.wiki/view/Video_Control)
 
     Pour pouvoir agencer le trailer à droite de la description, j'ai mis les 2 <control> (celui de la description et celui du trailer)
