@@ -91,7 +91,7 @@
 				<focusedlayout width="310" height="486">
 					<control type="button">
 						<visible allowhiddenfocus="true">false</visible>
-						<onfocus condition="!Player.Playing + Control.HasFocus(5200)">AlarmClock(trailerClock,PlayMedia($ESCINFO[ListItem.trailer], 1),00:03,silent)</onfocus>
+						<onfocus condition="!Player.Playing + [Control.HasFocus(5100) | Control.HasFocus(5200) | Control.HasFocus(5300) | Control.HasFocus(5400)]">AlarmClock(trailerClock,PlayMedia($ESCINFO[ListItem.trailer], 1),00:05,silent)</onfocus>
 						<onunfocus>CancelAlarm(trailerClock,true)</onunfocus>
 						<onunfocus condition="String.Contains(Player.Filename, -trailer.)">Stop</onunfocus>
 					</control>
